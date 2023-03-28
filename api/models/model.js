@@ -45,7 +45,7 @@ dbSchema.methods.generateAuthToken= async function(){
     const token= {
         _id:this._id, username: this.username, email:this.email, isAdmin:this.isAdmin
     }
-    config.get(('jwt/PrivateKey'))
+    config.get(('jwtPrivateKey'))
     return token
  
 }
