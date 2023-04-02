@@ -2,8 +2,8 @@ const {Users,validateUser}= require("../models/model")
 const bcrypt = require("bcrypt");
 
 const createNewUser = async (req, res) => {
-  const { email, password } = req.body;
-  console.log(email,password);
+  const { username,email, password } = await req.body;
+  console.log(username,email,password);
   try {
     //check if the user already exists in the database
     const {error}= validateUser(req.body)
@@ -20,6 +20,7 @@ const createNewUser = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, salt);
 
       const user = await new Users({
+        username:username,
         email: email,
         password: hashedPassword,
       });

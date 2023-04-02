@@ -2,6 +2,10 @@ const mongoose= require("mongoose")
 const config= require("config")
 const Joi = require("joi")
 const dbSchema = new mongoose.Schema({
+    username:{
+        type:String,
+        required:true
+    },
     email:{
         type:String,
         minlength:10,
@@ -28,6 +32,7 @@ type:Boolean,
 function validateUser (item){
     const schema  = Joi.object(
         {
+            username:Joi.string().min(3).max(255).required(),
             email: Joi.string().max(255).required().email({minDomainSegments:2}),
             password: Joi.string().max(255).min(3).required(),
     

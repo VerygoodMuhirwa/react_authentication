@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-
+import axios from "axios";
 function Signup(){
     
     const [email, setEmail ]= useState("")
@@ -24,6 +24,23 @@ e.preventDefault()
     const settingPassword = (e)=>{
      setPassword(e.target.value)
        }
+
+ //the data to submit to the backend
+ const formData= {
+    username:username,
+    email:email,
+    password:password
+   }
+
+   //making the request
+   axios.post("/create",formData)
+   .then((res)=>{
+    console.log(res);
+   })
+.catch((error)=>{
+console.log(error);
+})
+
     return (
     
         <form action="" onSubmit={handleSubmit} className="form">
